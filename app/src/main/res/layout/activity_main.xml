@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="#EC84A7"
-            android:text="\ue030"
+            android:text="@string/card_select"
             android:textSize="140dp"
             android:textStyle="bold"
             android:fontFamily="@font/materialicons"/>
@@ -60,7 +60,7 @@
         android:background="@drawable/roundselector"
         android:onClick="onPlayClick"
         android:textAlignment="center"
-        android:text="\ue037"
+        android:text="@string/btn_play"
         android:textSize="50dp"
         android:fontFamily="@font/materialicons"
         android:textColor="#E1C7D0"/>
@@ -77,7 +77,7 @@
         android:onClick="onSkipClick"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="skip"
+        android:text="@string/skip"
         android:textColor="#606060"
         android:textSize="15dp" />
     <Space
