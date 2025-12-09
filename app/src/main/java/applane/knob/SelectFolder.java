@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,12 +16,12 @@ import java.util.List;
 
 public class SelectFolder extends AppCompatActivity
 {
-    static String ALL_CARDS = "All Cards";
     private List<String> cardPaths;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_select_folder);
 
         cardPaths =  getCards();
@@ -31,7 +32,7 @@ public class SelectFolder extends AppCompatActivity
         listView.setAdapter(adapter);
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent();
-            intent.putExtra("card", cardPaths.get(position).equals(ALL_CARDS) ? "" : cardPaths.get(position));
+            intent.putExtra("card", cardPaths.get(position).equals(getString(R.string.all_cards)) ? "" : cardPaths.get(position));
             setResult(Activity.RESULT_OK, intent);
             finish();
         });
@@ -52,7 +53,7 @@ public class SelectFolder extends AppCompatActivity
             }
         }
 
-        externalPaths.add(ALL_CARDS);
+        externalPaths.add(getString(R.string.all_cards));
         return externalPaths;
     }
 

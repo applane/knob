@@ -19,9 +19,11 @@
         tools:targetApi="24">
         <activity
             android:name="applane.knob.SelectFolder"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name="applane.knob.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
