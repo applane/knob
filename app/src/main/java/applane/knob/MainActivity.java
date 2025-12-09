@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Song song = SongDir.current(this);
+        Song song = SongDir.current();
         if (song != null) {
             title.setText(song.title);
             artist.setText(song.artist);

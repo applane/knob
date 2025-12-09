@@ -36,7 +36,7 @@ public class SongDir
         if (cursor != null)
         {
             initSongList();
-            nextSong(ctx);
+            nextSong();
         }
         return hasSongs();
     }
@@ -52,13 +52,13 @@ public class SongDir
         return (cursor != null && cursor.getCount() > 0);
     }
 
-    public static synchronized void nextSong(Context ctx)
+    public static synchronized void nextSong()
     {
         if (!hasSongs()) return;
         songId = nextSongId();
     }
 
-    public static synchronized Song current(Context ctx)
+    public static synchronized Song current()
     {
         if (!hasSongs()) return null;
 
@@ -80,28 +80,10 @@ public class SongDir
         return cursor.getString(index);
     }
 
-    private static String getAlbumFile(Context ctx, String albumId)
-    {
-        Cursor albums = ctx.getContentResolver().query(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
-                new String[] {MediaStore.Audio.Albums._ID, MediaStore.Audio.Albums.ALBUM_ART},
-                MediaStore.Audio.Albums._ID+ "=?",
-                new String[] {String.valueOf(albumId)},
-                null);
-
-        if (albums != null && albums.moveToFirst()) {
-            int index = albums.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART);
-            if (index >= 0)
-            {
-                String file = albums.getString(index);
-                if (file != null) return file;
-            }
-        }
-        return "";
-    }
 
     // SONG QUEUE
-    private static ArrayList<Integer> songList = new ArrayList<>();
-    private static SecureRandom random = new SecureRandom();
+    private static final ArrayList<Integer> songList = new ArrayList<>();
+    private static final SecureRandom random = new SecureRandom();
 
     private static void initSongList()
     {
@@ -115,7 +97,7 @@ public class SongDir
     private static int nextSongId()
     {
         if (!hasSongs()) return -1;
-        if (songList.size() == 0)
+        if (songList.isEmpty())
             initSongList();
         return songList.remove(random.nextInt(songList.size()));
     }

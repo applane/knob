@@ -96,7 +96,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
     void  skipToNext()
     {
-        SongDir.nextSong(getApplicationContext());
+        SongDir.nextSong();
         playCurrent();
     }
 
@@ -106,7 +106,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         try
         {
-            Song s = SongDir.current(getApplicationContext());
+            Song s = SongDir.current();
             if (s == null) return;
 
             song = s;
@@ -362,7 +362,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
-        SongDir.nextSong(getApplicationContext());
+        SongDir.nextSong();
         playCurrent();
         setMediaPlaybackState(PlaybackStateCompat.STATE_PLAYING);
     }

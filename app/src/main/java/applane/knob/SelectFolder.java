@@ -2,15 +2,9 @@ package applane.knob;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.storage.StorageManager;
-import android.os.storage.StorageVolume;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,7 +16,6 @@ import java.util.List;
 public class SelectFolder extends AppCompatActivity
 {
     static String ALL_CARDS = "All Cards";
-    private ListView listView;
     private List<String> cardPaths;
 
     @Override
@@ -31,9 +24,8 @@ public class SelectFolder extends AppCompatActivity
         setContentView(R.layout.activity_select_folder);
 
         cardPaths =  getCards();
-        if (cardPaths == null) return;
 
-        listView = findViewById(R.id.listView);
+        ListView listView = findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, cardPaths);
         listView.setAdapter(adapter);

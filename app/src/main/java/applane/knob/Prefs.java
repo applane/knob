@@ -3,9 +3,6 @@ package applane.knob;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.Map;
-import java.util.Set;
-
 public class Prefs {
     public static String filename = "preferences";
     public static boolean getBool(Context ctx, String name, boolean defValue)
